@@ -24,6 +24,7 @@ const preloaderElement = document.querySelector('.preloader')
 
 buttonElement.addEventListener('click', () => {
   preloaderElement.classList.add('preloader-hidden')
+  startSiteAnimations();
 })
 
 const typingText = () => {
@@ -70,3 +71,4 @@ function addNewText() {
   }, 100)
 }
 }
+
