@@ -1,0 +1,16 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Минимальная высота вьюпорта */
+    &.no-scroll{
+        overflow: hidden;
+    }
+}
+
+main {
+    flex-grow: 1; /* Основной контент занимает всё доступное пространство */
+}
+
+footer {
+    margin-top: auto; /* "Прижимает" футер к низу */
+}

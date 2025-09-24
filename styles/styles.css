@@ -1,0 +1,657 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure, fieldset):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями и видео
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Убираем скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+   */
+  scrollbar-gutter: stable;
+}
+
+/**
+  Плавный скролл
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут fill со значением 'none' или начинается с 'url')
+ */
+:where([fill]:not([fill=none],
+[fill^=url])) {
+  fill: currentColor;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут stroke со значением 'none')
+ */
+:where([stroke]:not([stroke=none],
+[stroke^=url])) {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@font-face {
+  font-family: "RubikGlitch-Regular";
+  src: url("/fonts/RubikGlitch-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tektur-Condensed";
+  src: url("/fonts/Tektur-Condensed-SemiBold.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+html.is-lock {
+  overflow: hidden;
+}
+
+.header {
+  background-color: rgb(32, 8, 8);
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.header {
+  font-family: Tektur-Condensed, sans-serif;
+  border-bottom: 2px solid white;
+}
+.header .container {
+  position: relative;
+  max-width: 75rem;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__burger-btn {
+  position: relative;
+  width: 1.875rem;
+  height: 1.6875rem;
+  border: 2px solid white;
+  background-color: rgb(14, 13, 13);
+  display: none;
+}
+.header__burger-btn span {
+  position: absolute;
+  width: 1.1875rem;
+  height: 0.125rem;
+  background-color: white;
+  left: 0.1875rem;
+}
+.header__burger-btn span:nth-child(2) {
+  transform: translateY(-0.375rem);
+}
+.header__burger-btn span:nth-child(3) {
+  transform: translateY(0.375rem);
+}
+.header__name {
+  font-size: 2.5rem;
+  white-space: nowrap;
+  color: white;
+  flex: 1 1 auto;
+}
+.header__logo {
+  min-height: clamp(6.25rem, 3.125rem);
+  min-width: clamp(100, 3.125rem);
+  padding-top: 1.25rem;
+  padding-bottom: 0.625rem;
+  transform: translateY(-0.625rem);
+  flex-shrink: 0;
+}
+.header__nav-list {
+  font-size: 1.375rem;
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  gap: 4.375rem;
+  padding-top: 0.625rem;
+}
+.header__nav-list-item {
+  color: rgb(255, 255, 255);
+  border: 2px solid white;
+  padding: 0.4375rem;
+  transition: all 0.5s;
+}
+.header__nav-list-item:last-child {
+  margin-right: 0.625rem;
+}
+.header__nav-list-item:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+.line {
+  height: 0.125rem;
+  width: 100vw;
+  background-color: white;
+}
+
+.burger-button {
+  display: none;
+  margin-left: auto;
+  position: relative;
+  height: 1.875rem;
+  width: 1.875rem;
+  background-color: black;
+  border: 2px solid white;
+  position: absolute;
+  right: 1.875rem;
+}
+.burger-button.is-active .burger-span:nth-child(1) {
+  rotate: 45deg;
+  top: 0.8125rem;
+  left: 0.1875rem;
+}
+.burger-button.is-active .burger-span:nth-child(2) {
+  rotate: -45deg;
+  top: 0.5rem;
+  left: -0.125rem;
+}
+.burger-button.is-active .burger-span:nth-child(3) {
+  width: 0;
+}
+
+.burger-span {
+  height: 0.125rem;
+  width: 1.25rem;
+  background-color: white;
+  position: absolute;
+  left: 0.21875rem;
+}
+.burger-span:nth-child(2) {
+  transform: translateY(0.375rem);
+}
+.burger-span:nth-child(3) {
+  transform: translateY(-0.375rem);
+}
+
+@media (width <= 52.56125rem) {
+  .burger-button {
+    display: block;
+    z-index: 999;
+  }
+  .header__overlay {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    z-index: 998;
+  }
+  .header__overlay.is-active {
+    right: 0;
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s;
+  }
+  .header__nav-list {
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .header__nav-list-item {
+    height: 3.25rem;
+    width: 8.875rem;
+    text-align: center;
+  }
+}
+@media (width <= 34.06125rem) {
+  .header__logo {
+    height: 5.625rem;
+    width: 4.375rem;
+  }
+  .header__name {
+    padding-top: 1.25rem;
+    font-size: 2.1875rem;
+  }
+  .line {
+    margin-top: 1.875rem;
+  }
+  .burger-button {
+    margin-top: 1.5625rem;
+  }
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #000000;
+  background-size: 400% 400%;
+  width: 100%;
+  height: 100vh;
+}
+
+.preloader {
+  position: fixed;
+  font-family: "Tektur-Condensed", sans-serif;
+  font-weight: 400;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.preloader-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  color: black;
+}
+
+#svg {
+  height: 9.375rem;
+  width: 9.375rem;
+  stroke: #fff;
+  fill-opacity: 0;
+  stroke-width: 3px;
+  stroke-dasharray: 4500;
+  animation: draw 8s ease;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 4500;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+.name-container {
+  height: 1.875rem;
+  overflow: hidden;
+}
+
+.logo-name {
+  color: #fff;
+  font-size: 1.25rem;
+  letter-spacing: 0.75rem;
+  text-transform: uppercase;
+  margin-left: 1.25rem;
+}
+
+.buttonOffPreloader {
+  font-size: 0.9375rem;
+  display: block;
+  height: 1.875rem;
+  width: 6.25rem;
+}
+.buttonOffPreloader .buttonOffPreloader:hover {
+  cursor: pointer;
+  box-shadow: 15 15 white;
+  color: white;
+  z-index: 10;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Минимальная высота вьюпорта */
+}
+body.no-scroll {
+  overflow: hidden;
+}
+
+main {
+  flex-grow: 1; /* Основной контент занимает всё доступное пространство */
+}
+
+footer {
+  margin-top: auto; /* "Прижимает" футер к низу */
+}
+
+.main {
+  font-family: "Tektur-Condensed", sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: white;
+}
+.main .container {
+  max-width: 75rem;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.main__subscribe {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid white;
+}
+.main__subscribe-text {
+  font-family: "Tektur-Condensed", sans-serif;
+  font-weight: 400;
+  height: 100%;
+  width: 100%;
+  font-size: 2.5rem;
+  min-width: 22.5625rem;
+  color: white;
+  margin: 0 auto;
+}
+@media (width <= 52.56125rem) {
+  .main__subscribe-text {
+    font-size: 1.5625rem;
+    min-width: 12.5rem;
+    padding-left: 0.3125rem;
+  }
+}
+@media (width <= 34.06125rem) {
+  .main__subscribe-text {
+    padding-left: 0.3125rem;
+    font-size: 0.9375rem;
+    min-width: 6.25rem;
+  }
+}
+.main__subscribe-photo img {
+  margin-right: auto;
+  height: 31.25rem;
+  width: 21.875rem;
+  padding-top: 0.625rem;
+}
+@media (width <= 34.06125rem) {
+  .main__subscribe-photo img {
+    padding-top: 0;
+  }
+}
+.main__about-roullete {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 18.75rem;
+  padding-top: 0.9375rem;
+}
+.main__about-roullete-text {
+  font-family: "Tektur-Condensed", sans-serif;
+  font-weight: 400;
+  height: 14.0625rem;
+  width: 36.25rem;
+  font-size: 1.875rem;
+  color: white;
+}
+@media (width <= 52.56125rem) {
+  .main__about-roullete-text {
+    font-size: 1.25rem;
+    width: 21.875rem;
+    padding-left: 0.3125rem;
+  }
+}
+@media (width <= 34.06125rem) {
+  .main__about-roullete-text {
+    height: 10.625rem;
+    width: 15.625rem;
+    padding-top: 0.625rem;
+    padding-left: 0.3125rem;
+    font-size: 0.9375rem;
+    min-width: 6.25rem;
+  }
+}
+@media (width < 400px) {
+  .main__about-roullete-text {
+    width: 12.5rem;
+  }
+}
+.main__roullete {
+  width: 18.75rem;
+  height: 15.625rem;
+  display: flex;
+  padding-top: 1.875rem;
+  flex-direction: column;
+  align-items: center;
+}
+.main__roullete-btn {
+  background-color: black;
+  color: rgb(255, 255, 255);
+  border: 2px solid white;
+  padding: 0.4375rem;
+  transition: all 0.5s;
+  height: 3.125rem;
+  width: 12.5rem;
+}
+@media (width <= 34.06125rem) {
+  .main__roullete-btn {
+    height: 1.875rem;
+    width: 6.25rem;
+    font-size: 0.75rem;
+    padding: 0;
+    margin-right: 0.3125rem;
+  }
+}
+.main__roullete-btn:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+.main__photoRoullete {
+  position: relative;
+}
+
+.ruletka {
+  height: 2.5rem;
+  width: 2.5rem;
+  transform: translate(4.6875rem, -13.125rem);
+}
+@media (width <= 34.06125rem) {
+  .ruletka {
+    transform: translate(2.6875rem, -8.85rem);
+  }
+}
+
+.rotate {
+  transition: all 2s;
+}
+@media (width <= 34.06125rem) {
+  .rotate {
+    height: 8.125rem;
+    width: 8.125rem;
+  }
+}
+
+.buttonAndtext {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*# sourceMappingURL=styles.css.map */

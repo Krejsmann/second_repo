@@ -1,0 +1,9 @@
+@import
+'normalize',
+'helpers/mixins',
+'helpers/functions',
+'helpers/index',
+'helpers/media',
+'fonts';
+
+@import 'blocks/header', 'blocks/preloader', 'blocks/globals', 'blocks/footer', 'blocks/main';

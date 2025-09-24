@@ -1,0 +1,138 @@
+.main {
+  font-family: 'Tektur-Condensed', sans-serif;
+      font-weight: 400;
+      font-size: rem(20);
+      color:white;
+  .container {
+    max-width: rem(1200);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &__subscribe {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid white;
+    &-text {
+      font-family: 'Tektur-Condensed', sans-serif;
+      font-weight: 400;
+      height: 100%;
+      width: 100%;
+      font-size: rem(40);
+      min-width: rem(361);
+      color: white;
+      margin: 0 auto;
+      @include mobile{
+        font-size:rem(25);
+        min-width: rem(200);
+        padding-left:rem(5);
+
+      }
+      @include mobile-s{
+        padding-left:rem(5);
+        font-size: rem(15);
+        min-width: rem(100);
+      }
+    }
+
+    &-photo img {
+      margin-right: auto;
+      height: rem(500);
+      width: rem(350);
+      padding-top: rem(10);
+      @include mobile-s{
+        padding-top: 0;
+      }
+    }
+  }
+  &__about-roullete{
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: rem(300);
+    padding-top: rem(15);
+    &-text{
+      font-family: 'Tektur-Condensed', sans-serif;
+      font-weight: 400;
+      height: rem(225);
+      width: rem(580);
+      font-size: rem(30);
+      color: white;
+      @include mobile{
+        font-size:rem(20);
+        width: rem(350);
+        padding-left:rem(5);
+
+      }
+      @include mobile-s{
+        height: rem(170);
+        width: rem(250);
+        padding-top: rem(10);
+        padding-left:rem(5);
+        font-size: rem(15);
+        min-width: rem(100);
+      }
+      @media(width < 400px){
+        width: rem(200);
+      }
+    }
+  }
+  &__roullete{
+    width: rem(300);
+    height: rem(250);
+    display:flex;
+    padding-top: rem(30);
+    flex-direction: column;
+    align-items: center;
+    &-btn{
+      background-color: black;
+      color: rgb(255, 255, 255);
+      border: 2px solid white;
+      padding: rem(7);
+      transition: all 0.5s;
+      height: rem(50);
+      width: rem(200);
+      @include mobile-s{
+        height: rem(30);
+        width: rem(100);
+        font-size: rem(12);
+        padding: 0;
+        margin-right: rem(5);
+      }
+      &:hover{
+          background-color: rgb(255, 255, 255);
+          color: black;
+      }
+    }
+  }
+  &__photoRoullete{
+    position: relative;
+  }
+}
+.ruletka{
+  height: rem(40);
+  width: rem(40);
+  transform: translate(rem(75), rem(-210));
+  @include mobile-s{
+    transform:translate(2.6875rem, -8.85rem);
+  }
+}
+.rotate{
+  transition: all 2s;
+  @include mobile-s{
+    height: rem(130);
+    width: rem(130);
+  }
+}
+.buttonAndtext{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
