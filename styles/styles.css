@@ -514,6 +514,7 @@ footer {
   font-weight: 400;
   font-size: 1.25rem;
   color: white;
+  height: 100%;
 }
 .main .container {
   max-width: 75rem;
@@ -683,16 +684,24 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 35px;
-  width: 35px;
+  height: 2.8125rem;
+  width: 2.8125rem;
   border: 1px solid rgb(255, 255, 255);
   background-color: rgb(53, 51, 51);
   border-radius: 40px;
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  right: 2.5rem;
+  bottom: 2.5rem;
   z-index: 1000;
   animation: move 1s alternate infinite;
+}
+@media (width <= 52.56125rem) {
+  .music-added {
+    height: 2.1875rem;
+    width: 2.1875rem;
+    right: 0.625rem;
+    bottom: 0.625rem;
+  }
 }
 
 @keyframes move {

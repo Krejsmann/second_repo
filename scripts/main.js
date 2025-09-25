@@ -1,3 +1,4 @@
+
 function startSiteAnimations(){
 const mainTextElement = document.querySelector('.main__subscribe-text')
 

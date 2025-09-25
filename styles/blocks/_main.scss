@@ -3,6 +3,7 @@
       font-weight: 400;
       font-size: rem(20);
       color:white;
+      height: 100%;
   .container {
     max-width: rem(1200);
     width: 100%;
@@ -152,16 +153,22 @@
   display:flex;
   align-items: center;
   justify-content: center;
-  height: 35px;
-  width: 35px;
+  height: rem(45);
+  width: rem(45);
   border: 1px solid rgb(255, 255, 255);
   background-color: rgb(53, 51, 51);
   border-radius:40px;
   position:fixed;
-  right: 20px;        
-  bottom: 20px;       
+  right: rem(40);        
+  bottom: rem(40);       
   z-index: 1000;      
   animation: move 1s alternate infinite; 
+  @include mobile {
+    height: rem(35);
+    width: rem(35);
+    right: rem(10);
+    bottom: rem(10);
+  }
 }
 
 
