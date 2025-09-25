@@ -24,6 +24,7 @@ const preloaderElement = document.querySelector('.preloader')
 
 buttonElement.addEventListener('click', () => {
   preloaderElement.classList.add('preloader-hidden')
+  document.body.classList.remove('preloader-active')
   startSiteAnimations();
 })
 

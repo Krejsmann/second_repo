@@ -22,17 +22,45 @@ rotateBtnElement.addEventListener('click', () => {
   const delta = getRandom(720,1080)
   angle += delta
   rotateElement.style.transform = `rotate(${angle}deg)`
-  console.log('ugol', angle)
+  let degs = angle % 360;
+  console.log('degs', degs)
+  setTimeout(() => {
+    if(degs > 130 && degs<307){
+    alert('Вам не повезло. ХА-ХА.')
+  } else{
+    alert('Вам повезло. Так держать')
+  }
+}, 1500)
 
   setTimeout(() => {
     canClick = true
   }, 2000)
 })
 const mainSecondText = document.querySelector('.main__about-roullete-text')
-const needText2 = "Теперь, когда мы познакомились,\n я хочу, чтобы ты сыграл в свою первую игру. \n От нёё будет зависить то, как я буду к тебе относиться.\n Нажми на кнопку."
+const needText2 = "Теперь, когда мы познакомились,\n я хочу, чтобы ты сыграл в свою первую игру.\n Нажми на кнопку."
 let mainCountText2 = 0;
 setTimeout(() => { const mainAddText2 = setInterval(() => {
   mainSecondText.innerHTML = needText2.slice(0, mainCountText2).replace(/\n/g, '<br>');
   if (mainCountText2++ > needText2.length) clearInterval(mainAddText2);
 }, 60); }, 10000)
 }
+
+
+
+const audio = document.getElementById('myAudio');
+const playButton = document.getElementById('playButton');
+const playIcon = document.getElementById('playIcon');
+
+playButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  if (audio.paused) {
+    audio.play();
+    playIcon.src = 'images/music/pause.png';  
+  } else {
+    audio.pause();
+    playIcon.src = 'images/music/play.png';  
+  }
+});
+
+
+

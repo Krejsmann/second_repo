@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 
-<body>
+<body class="preloader-active">
 <div class="preloader">
     <div class="container">
       <p class="preloader__text"></p>
@@ -26,7 +26,7 @@
       </div>
     </div>
     <button class="buttonOffPreloader" type="button">Перейти к сайту</button>
-  </div>
+  </div> 
   <header class="header">
     <div class="container">
       <button class="burger-button" data-js-burger-button>
@@ -51,6 +51,13 @@
   </header>
   <div class="line"></div>
   <main class="main">
+      <a href="#" id="playButton" class="custom-button">
+  <div class="music-added">
+    <img id="playIcon" src="images/music/music.png" alt="">
+  </div>
+</a>
+  <audio id="myAudio" src="music/Boom.mp3"></audio>
+    <div class="mainFirst__wrapper">
     <div class="container">
       <div class="main__subscribe">
         <div class="main__subscribe-text"></div>
@@ -69,6 +76,15 @@
           </div>
       </div>
     </div>
+  </div>
+  <div class="container">
+      <div class="main__about-games">
+        <div class="main__about-gameOne">
+          <div class="main__about-gameOne-text"></div>
+          <div class="main__about-gameOne-slider"></div>
+        </div>
+      </div>
+      </div>
   </main>
   <footer class="footer">
     
